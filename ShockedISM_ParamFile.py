@@ -42,12 +42,6 @@ Initial parameters and shock feature equations from FG2012
 """
 
 """
-FOR THIS CODE, TO CHANGE INITIAL WIND VELCOITY, USE EDIT: FIND AND REPLACE
-VALUES: 10k, 20k, 30k, 40k, 50k
----Don't include decimals when using find and replace because value in plot titles as well
-"""
-
-"""
 #Initial parameters
 #alpha= 1.0 #0 < alpha < 2
 L_AGN = 10.0**46.0 #erg/s = (g*cm^2/s^2)/s
@@ -71,7 +65,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 15
+param_row = 0
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
