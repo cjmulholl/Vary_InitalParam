@@ -65,7 +65,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 0
+param_row = 15
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
@@ -133,7 +133,7 @@ for i in range(5):
     Rc_t1.append(0.86*R2_t1[i])
 
     #Define equal width radius bins
-    num= 10001
+    num= 20001
     radius1 = np.linspace(10.0**(17.0),(R2_t1[i]*1.2),num) #cm, was 10^-1 pc < R < 10^4 pc
 
     vg1_r=[]; p1_r=[]
@@ -237,7 +237,7 @@ for i in range(5):
     Rc_t2.append(0.86*R2_t2[i])
 
     #Define equal width radius bins
-    num= 10001
+    num= 20001
     radius2 = np.linspace(10.0**(17.0),(R2_t2[i]*1.2),num) #cm, was 10^-1 pc < R < 10^4 pc
 
     vg2_r=[]; p2_r=[]
@@ -511,6 +511,12 @@ plt.plot(np.log10(t1),np.log10(R2_t1),
 plt.legend(loc='upper left')
 plt.ylabel(r'$log(R) \quad (pc)$', fontsize=12)
 plt.xlabel(r'$log(t) \quad (yrs)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logrVSlogt.png',bbox_inches='tight')
 plt.show()
 
@@ -518,6 +524,12 @@ plt.show()
 #---Plot log(vgas) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -568,6 +580,7 @@ axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
 axes[1,1].legend(loc='upper right')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_subplots.png',bbox_inches='tight')
 plt.show()
 
@@ -590,12 +603,24 @@ plt.legend(loc='lower left')
 #plt.xlim(0,3)
 plt.ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
 plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSlogr.png',bbox_inches='tight')
 plt.show()
 
 #---Plot log(vgas) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 6))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -680,12 +705,19 @@ axes[1,2].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[1,2].legend(loc='lower left')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_all.png',bbox_inches='tight')
 plt.show()
 
 #---Plot log(vgas) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(8, 9))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -770,6 +802,7 @@ axes[2,1].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[2,1].legend(loc='lower left')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_all2.png',bbox_inches='tight')
 plt.show()
 
@@ -777,6 +810,12 @@ plt.show()
 #---Plot log(n) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -827,6 +866,7 @@ axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
 axes[1,1].legend(loc='upper right')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_subplots.png',bbox_inches='tight')
 plt.show()
 
@@ -849,12 +889,24 @@ plt.plot(np.log10(r_t1[1]),np.log10(p_t1[1]),
 plt.legend(loc='lower left')
 plt.ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSlogr.png',bbox_inches='tight')
 plt.show()
 
 #---Plot log(n) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 6))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -939,12 +991,19 @@ axes[1,2].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[1,2].legend(loc='upper right')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_all.png',bbox_inches='tight')
 plt.show()
 
 #---Plot log(n) vs R for different timesteps
 
 fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(8, 9))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
 axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
@@ -1029,12 +1088,19 @@ axes[2,1].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[2,1].legend(loc='upper right')
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_all2.png',bbox_inches='tight')
 plt.show()
 
 #---Plot n(v_gas) for time steps (both linear and log)
 
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
+plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+             r', $\alpha=$'+str(alpha)+
+             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+             r', $\tau_{in}=$'+str(Tin),
+             fontsize=10)
 #---t=10^3yr
 axes[0,0].plot((vg_t1[1]),np.log10(p_t1[1]),
                c=cmap.to_rgba(8),linestyle="",marker='.',
@@ -1065,6 +1131,7 @@ axes[1,1].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
 axes[1,1].legend(loc='upper right',bbox_to_anchor =(0.95,1))
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.88)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSvgas_sublpots.png',bbox_inches='tight')
 plt.show()
 
@@ -1088,6 +1155,12 @@ plt.legend(loc='upper right', bbox_to_anchor =(0.95,1))
 #plt.ylim(-2.5,6)
 plt.ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 plt.xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSvgas.png',bbox_inches='tight')
 plt.show()
 
@@ -1116,6 +1189,12 @@ plt.axvline(np.log10(Rc_t1[0]),color='black',linestyle="--")
 plt.legend(loc='upper right')
 plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 plt.ylabel(r'$log(dv/dt) \quad (km/s)/(rest-frame-years)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logdvdtVSlogr.png',bbox_inches='tight')
 plt.show()
 
@@ -1141,6 +1220,12 @@ plt.legend(loc='upper left')
 #plt.ylim(-0.1,3.5)
 plt.xlabel(r'$(v_{gas}) \quad (km/s)$', fontsize=12)
 plt.ylabel(r'$(dv/dt) \quad (km/s)/(rest-frame-years)$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_dvdtVSv.png',bbox_inches='tight')
 plt.show()
 
@@ -1170,6 +1255,12 @@ plt.legend(loc='upper left')
 #plt.ylim(16,27)
 plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 plt.ylabel(r'$log(N_v) \quad ([cm^{-2}]/[km/s])$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logNVSlogr.png',bbox_inches='tight')
 plt.show()
 
@@ -1183,6 +1274,12 @@ plt.legend(loc='upper right')
 #plt.ylim(16,26)
 plt.xlabel(r'$R \quad (pc)$', fontsize=12)
 plt.ylabel(r'$log(N_v) \quad ([cm^{-2}]/[km/s])$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logNVSr_t10^3.5.png',bbox_inches='tight')
 plt.show()
 
@@ -1207,6 +1304,12 @@ plt.legend(loc='upper right')
 #plt.ylim(16,26)
 plt.xlabel(r'$(v_{gas}) \quad (km/s)$', fontsize=12)
 plt.ylabel(r'$log(N) \quad ([cm^{-2}]/[km/s])$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logNVSv.png',bbox_inches='tight')
 plt.show()
 
@@ -1231,5 +1334,11 @@ plt.legend(loc='upper right')
 #plt.xlim(16,24)
 plt.ylabel(r'$log(dv/dt) \quad (km/s)/(rest-frame-years)$', fontsize=12)
 plt.xlabel(r'$log(N) \quad ([cm^{-2}]/[km/s])$', fontsize=12)
+plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
+          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
+          r', $\alpha=$'+str(alpha)+
+          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
+          r', $\tau_{in}=$'+str(Tin),
+          fontsize=10)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logdvdtVSlogN.png',bbox_inches='tight')
 plt.show()
