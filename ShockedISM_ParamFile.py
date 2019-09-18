@@ -65,7 +65,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 17
+param_row = 1
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
@@ -107,7 +107,7 @@ vg1_R1=[None]*5;vg1_Rc=[None]*5;vg1_R2=[None]*5
 p1_R1=[None]*5;p1_Rc=[None]*5;p1_R2=[None]*5
 
 #density distribution parameter
-alpha= 0.0
+#alpha= 0.0
 
 #Loop through each of the 5 time epochs
 for i in range(5):
@@ -127,7 +127,7 @@ for i in range(5):
     roots=np.roots(coeff)
     real_root = roots[np.isreal(roots)].real
     for j in range(np.size(real_root)):
-        if real_root[j] > 0:
+        if real_root[j] > 0 and real_root[j] < R2_t1[i]:
             R1_t1.append(float(real_root[j]))
 
     Rc_t1.append(0.86*R2_t1[i])
