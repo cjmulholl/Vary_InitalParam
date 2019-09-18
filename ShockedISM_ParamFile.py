@@ -53,7 +53,8 @@ Tin = 1.0 #dimensionless
 
 # Input inital param file
 InitialParam = os.getcwd() + dirDelim + "InitialParam.csv"
-L_AGN_all, vin_all, alpha_all, nH_0_all, R0_all, Tin_all = np.genfromtxt(InitialParam,skip_header=1,delimiter=',',usecols=(1,2,3,4,5,6),dtype=float,unpack=True)
+L_AGN_all, vin_all, alpha_all, nH_0_all, R0_all, Tin_all = np.genfromtxt(InitialParam,skip_header=1,delimiter=',',
+                    usecols=(1,2,3,4,5,6),dtype=float,unpack=True)
 
 print(L_AGN_all)
 print(vin_all)
@@ -65,7 +66,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 1
+param_row = 18
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
