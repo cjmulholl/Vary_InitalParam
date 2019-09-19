@@ -66,7 +66,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 0
+param_row = 1
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
@@ -132,6 +132,10 @@ for i in range(5):
             R1_t1.append(float(real_root[j]))
 
     Rc_t1.append(0.86*R2_t1[i])
+
+    if Rc_t1[i] < R1_t1[i]:
+        R1_t1[i] = Rc_t1[i]
+        print('R1<Rc for t='+str(t1[i]))
 
     #Define equal width radius bins
     num= 20001
@@ -236,6 +240,9 @@ for i in range(5):
             R1_t2.append(float(real_root[j]))
 
     Rc_t2.append(0.86*R2_t2[i])
+
+    if Rc_t2[i] < R1_t2[i]:
+        R1_t2[i] = Rc_t2[i]
 
     #Define equal width radius bins
     num= 20001
