@@ -66,7 +66,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 1
+param_row = 18
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
@@ -336,193 +336,6 @@ plt.savefig('test_'+str(param_row)+'/ShockBubble_logrVSlogt.png',bbox_inches='ti
 plt.show()
 
 """MAIN vgas PLOT"""
-#---Plot log(vgas) vs R for different timesteps
-
-fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
-plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-             r', $\alpha=$'+str(alpha)+
-             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-             r', $\tau_{in}=$'+str(Tin),
-             fontsize=10)
-#---t=10^3yr
-axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=R2_t1[0],color='black',linestyle="--")
-axes[0,0].plot((r_t1[1]),np.log10(vg_t1[1]),
-               c=cmap.to_rgba(8),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3} yrs$')
-#axes[0,0].set_ylim(2.4,4.6)
-#axes[0,0].set_xlim(0,15)
-axes[0,0].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[0,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,0].legend(loc='upper right')
-#---t=10^4yr
-axes[0,1].axvline(x=R1_t1[1],color='black',linestyle="--")
-axes[0,1].axvline(x=Rc_t1[1],color='black',linestyle="--")
-axes[0,1].axvline(x=R2_t1[1],color='black',linestyle="--")
-axes[0,1].plot((r_t1[2]),np.log10(vg_t1[2]),
-               c=cmap.to_rgba(12),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{4} yrs$')
-#axes[0,1].set_ylim(2.4,4.6)
-#axes[0,1].set_xlim(0,50)
-axes[0,1].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[0,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,1].legend(loc='upper right')
-#---t=10^5yr
-axes[1,0].axvline(x=R1_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=Rc_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=R2_t1[2],color='black',linestyle="--")
-axes[1,0].plot((r_t1[3]),np.log10(vg_t1[3]),
-               c=cmap.to_rgba(16),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{5} yrs$')
-#axes[0,1].set_ylim(2.4,4.6)
-#axes[1,0].set_xlim(0,200)
-axes[1,0].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[1,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,0].legend(loc='upper right')
-#---t=10^6yr
-axes[1,1].axvline(x=R1_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=Rc_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=R2_t1[3],color='black',linestyle="--")
-axes[1,1].plot((r_t1[4]),np.log10(vg_t1[4]),
-               c=cmap.to_rgba(20),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{6} yrs$')
-#axes[0,1].set_ylim(2.4,4.6)
-#axes[1,1].set_xlim(0,800)
-axes[1,1].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,1].legend(loc='upper right')
-
-plt.tight_layout()
-plt.subplots_adjust(top=0.88)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_subplots.png',bbox_inches='tight')
-plt.show()
-
-#Plot log(v_gas) vs log(r) for different time steps
-#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
-plt.plot(np.log10(r_t1[4]),np.log10(vg_t1[4]),
-         c=cmap.to_rgba(20),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{6} yrs$')
-plt.plot(np.log10(r_t1[3]),np.log10(vg_t1[3]),
-         c=cmap.to_rgba(16),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{5} yrs$')
-plt.plot(np.log10(r_t1[2]),np.log10(vg_t1[2]),
-         c=cmap.to_rgba(12),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{4} yrs$')
-plt.plot(np.log10(r_t1[1]),np.log10(vg_t1[1]),
-         c=cmap.to_rgba(8),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{3} yrs$')
-plt.legend(loc='lower left')
-#plt.ylim(2.4,4.6)
-#plt.xlim(0,3)
-plt.ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
-plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-          r', $\alpha=$'+str(alpha)+
-          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-          r', $\tau_{in}=$'+str(Tin),
-          fontsize=10)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSlogr.png',bbox_inches='tight')
-plt.show()
-
-#---Plot log(vgas) vs R for different timesteps
-
-fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 6))
-plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-             r', $\alpha=$'+str(alpha)+
-             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-             r', $\tau_{in}=$'+str(Tin),
-             fontsize=10)
-#---t=10^3yr
-axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=R2_t1[0],color='black',linestyle="--")
-axes[0,0].plot((r_t1[1]),np.log10(vg_t1[1]),
-               c=cmap.to_rgba(8),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3} yrs$')
-#axes[0,0].set_ylim(2.4,4.4)
-#axes[0,0].set_xlim(0,15)
-axes[0,0].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[0,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,0].legend(loc='upper right')
-#---t=10^3.5yr
-axes[0,1].axvline(x=R1_t1[4],color='black',linestyle="--")
-axes[0,1].axvline(x=Rc_t1[4],color='black',linestyle="--")
-axes[0,1].axvline(x=R2_t1[4],color='black',linestyle="--")
-axes[0,1].plot((r_t1[5]),np.log10(vg_t1[5]),
-               color='black',linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3.5} yrs$')
-#axes[0,1].set_ylim(2.4,4.4)
-#axes[0,1].set_xlim(0,30)
-axes[0,1].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[0,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,1].legend(loc='upper right')
-#---t=10^4yr
-axes[0,2].axvline(x=R1_t1[1],color='black',linestyle="--")
-axes[0,2].axvline(x=Rc_t1[1],color='black',linestyle="--")
-axes[0,2].axvline(x=R2_t1[1],color='black',linestyle="--")
-axes[0,2].plot((r_t1[2]),np.log10(vg_t1[2]),
-               c=cmap.to_rgba(12),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{4} yrs$')
-#axes[0,2].set_ylim(2.4,4.4)
-#axes[0,2].set_xlim(0,60)
-axes[0,2].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[0,2].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,2].legend(loc='upper right')
-#---t=10^5yr
-axes[1,0].axvline(x=R1_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=Rc_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=R2_t1[2],color='black',linestyle="--")
-axes[1,0].plot((r_t1[3]),np.log10(vg_t1[3]),
-               c=cmap.to_rgba(16),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{5} yrs$')
-#axes[1,0].set_ylim(2.4,4.4)
-#axes[1,0].set_xlim(0,250)
-axes[1,0].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[1,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,0].legend(loc='upper right')
-#---t=10^6yr
-axes[1,1].axvline(x=R1_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=Rc_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=R2_t1[3],color='black',linestyle="--")
-axes[1,1].plot((r_t1[4]),np.log10(vg_t1[4]),
-               c=cmap.to_rgba(20),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{6} yrs$')
-#axes[1,1].set_ylim(2.4,4.4)
-#axes[1,1].set_xlim(0,1000)
-axes[1,1].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,1].legend(loc='upper right')
-#---all t
-#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
-axes[1,2].plot(np.log10(r_t1[4]),np.log10(vg_t1[4]),
-               c=cmap.to_rgba(20),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{6} yrs$')
-axes[1,2].plot(np.log10(r_t1[3]),np.log10(vg_t1[3]),
-               c=cmap.to_rgba(16),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{5} yrs$')
-axes[1,2].plot(np.log10(r_t1[2]),np.log10(vg_t1[2]),
-               c=cmap.to_rgba(12),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{4} yrs$')
-axes[1,2].plot(np.log10(r_t1[5]),np.log10(vg_t1[5]),
-               color='black',linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{3.5} yrs$')
-axes[1,2].plot(np.log10(r_t1[1]),np.log10(vg_t1[1]),
-               c=cmap.to_rgba(8),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{3} yrs$')
-#axes[1,2].set_ylim(2.4,4.4)
-#axes[1,2].set_xlim(0,3)
-axes[1,2].set_ylabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
-axes[1,2].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
-axes[1,2].legend(loc='lower left')
-
-plt.tight_layout()
-plt.subplots_adjust(top=0.88)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_all.png',bbox_inches='tight')
-plt.show()
 
 #---Plot log(vgas) vs R for different timesteps
 
@@ -617,198 +430,11 @@ axes[2,1].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[2,1].legend(loc='lower left')
 
 plt.tight_layout()
-plt.subplots_adjust(top=0.88)
+plt.subplots_adjust(top=0.95)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_logvgasVSr_all2.png',bbox_inches='tight')
 plt.show()
 
 """MAIN p PLOT"""
-#---Plot log(n) vs R for different timesteps
-
-fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
-plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-             r', $\alpha=$'+str(alpha)+
-             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-             r', $\tau_{in}=$'+str(Tin),
-             fontsize=10)
-#---t=10^3yr
-axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=R2_t1[0],color='black',linestyle="--")
-axes[0,0].plot((r_t1[1]),np.log10(p_t1[1]),
-               c=cmap.to_rgba(8),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3} yrs$')
-#axes[0,0].set_ylim(-2,5)
-#axes[0,0].set_xlim(0,15)
-axes[0,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[0,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,0].legend(loc='upper right')
-#---t=10^4yr
-axes[0,1].axvline(x=R1_t1[1],color='black',linestyle="--")
-axes[0,1].axvline(x=Rc_t1[1],color='black',linestyle="--")
-axes[0,1].axvline(x=R2_t1[1],color='black',linestyle="--")
-axes[0,1].plot((r_t1[2]),np.log10(p_t1[2]),
-               c=cmap.to_rgba(12),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{4} yrs$')
-#axes[0,1].set_ylim(-2,5)
-#axes[0,1].set_xlim(0,60)
-axes[0,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[0,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,1].legend(loc='upper right')
-#---t=10^5yr
-axes[1,0].axvline(x=R1_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=Rc_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=R2_t1[2],color='black',linestyle="--")
-axes[1,0].plot((r_t1[3]),np.log10(p_t1[3]),
-               c=cmap.to_rgba(16),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{5} yrs$')
-#axes[1,0].set_ylim(-2,5)
-#axes[1,0].set_xlim(0,250)
-axes[1,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[1,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,0].legend(loc='upper right')
-#---t=10^6yr
-axes[1,1].axvline(x=R1_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=Rc_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=R2_t1[3],color='black',linestyle="--")
-axes[1,1].plot((r_t1[4]),np.log10(p_t1[4]),
-               c=cmap.to_rgba(20),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{6} yrs$')
-#axes[1,1].set_ylim(-2,5)
-#axes[1,1].set_xlim(0,1000)
-axes[1,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,1].legend(loc='upper right')
-
-plt.tight_layout()
-plt.subplots_adjust(top=0.88)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_subplots.png',bbox_inches='tight')
-plt.show()
-
-#Plot log(n) vs log(R) plot for different t steps
-#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
-plt.plot(np.log10(r_t1[4]),np.log10(p_t1[4]),
-         c=cmap.to_rgba(20),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{6} yrs$')
-plt.plot(np.log10(r_t1[3]),np.log10(p_t1[3]),
-         c=cmap.to_rgba(16),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{5} yrs$')
-plt.plot(np.log10(r_t1[2]),np.log10(p_t1[2]),
-         c=cmap.to_rgba(12),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{4} yrs$')
-plt.plot(np.log10(r_t1[1]),np.log10(p_t1[1]),
-         c=cmap.to_rgba(8),linestyle="-",marker='.',
-         markersize=3,label=r'$t=10^{3} yrs$')
-#plt.xlim(0,3)
-#plt.ylim(-3,3)
-plt.legend(loc='lower left')
-plt.ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-plt.xlabel(r'$log(R) \quad (pc)$', fontsize=12)
-plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-          r', $\alpha=$'+str(alpha)+
-          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-          r', $\tau_{in}=$'+str(Tin),
-          fontsize=10)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSlogr.png',bbox_inches='tight')
-plt.show()
-
-#---Plot log(n) vs R for different timesteps
-
-fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 6))
-plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-             r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-             r', $\alpha=$'+str(alpha)+
-             r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-             r', $\tau_{in}=$'+str(Tin),
-             fontsize=10)
-#---t=10^3yr
-axes[0,0].axvline(x=R1_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=Rc_t1[0],color='black',linestyle="--")
-axes[0,0].axvline(x=R2_t1[0],color='black',linestyle="--")
-axes[0,0].plot((r_t1[1]),np.log10(p_t1[1]),
-               c=cmap.to_rgba(8),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3} yrs$')
-#axes[0,0].set_ylim(-2,4)
-#axes[0,0].set_xlim(0,15)
-axes[0,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[0,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,0].legend(loc='upper right')
-#---t=10^3.5yr
-axes[0,1].axvline(x=R1_t1[4],color='black',linestyle="--")
-axes[0,1].axvline(x=Rc_t1[4],color='black',linestyle="--")
-axes[0,1].axvline(x=R2_t1[4],color='black',linestyle="--")
-axes[0,1].plot((r_t1[5]),np.log10(p_t1[5]),
-               color='black',linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{3.5} yrs$')
-#axes[0,1].set_ylim(-2,4)
-#axes[0,1].set_xlim(0,30)
-axes[0,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[0,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,1].legend(loc='upper right')
-#---t=10^4yr
-axes[0,2].axvline(x=R1_t1[1],color='black',linestyle="--")
-axes[0,2].axvline(x=Rc_t1[1],color='black',linestyle="--")
-axes[0,2].axvline(x=R2_t1[1],color='black',linestyle="--")
-axes[0,2].plot((r_t1[2]),np.log10(p_t1[2]),
-               c=cmap.to_rgba(12),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{4} yrs$')
-#axes[0,2].set_ylim(-2,4)
-#axes[0,2].set_xlim(0,60)
-axes[0,2].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[0,2].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[0,2].legend(loc='upper right')
-#---t=10^5yr
-axes[1,0].axvline(x=R1_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=Rc_t1[2],color='black',linestyle="--")
-axes[1,0].axvline(x=R2_t1[2],color='black',linestyle="--")
-axes[1,0].plot((r_t1[3]),np.log10(p_t1[3]),
-               c=cmap.to_rgba(16),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{5} yrs$')
-#axes[1,0].set_ylim(-2,4)
-#axes[1,0].set_xlim(0,250)
-axes[1,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[1,0].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,0].legend(loc='upper right')
-#---t=10^6yr
-axes[1,1].axvline(x=R1_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=Rc_t1[3],color='black',linestyle="--")
-axes[1,1].axvline(x=R2_t1[3],color='black',linestyle="--")
-axes[1,1].plot((r_t1[4]),np.log10(p_t1[4]),
-               c=cmap.to_rgba(20),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{6} yrs$')
-#axes[1,1].set_ylim(-2,4)
-#axes[1,1].set_xlim(0,1000)
-axes[1,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[1,1].set_xlabel(r'$R \quad (pc)$', fontsize=12)
-axes[1,1].legend(loc='upper right')
-#---all t
-#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
-axes[1,2].plot(np.log10(r_t1[4]),np.log10(p_t1[4]),
-               c=cmap.to_rgba(20),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{6} yrs$')
-axes[1,2].plot(np.log10(r_t1[3]),np.log10(p_t1[3]),
-               c=cmap.to_rgba(16),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{5} yrs$')
-axes[1,2].plot(np.log10(r_t1[2]),np.log10(p_t1[2]),
-               c=cmap.to_rgba(12),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{4} yrs$')
-axes[1,2].plot(np.log10(r_t1[5]),np.log10(p_t1[5]),
-               color='black',linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{3.5} yrs$')
-axes[1,2].plot(np.log10(r_t1[1]),np.log10(p_t1[1]),
-               c=cmap.to_rgba(8),linestyle="-",marker='.',
-               markersize=3)#,label=r'$t=10^{3} yrs$')
-#axes[1,2].set_ylim(-2,4)
-#axes[1,2].set_xlim(0,3)
-axes[1,2].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-axes[1,2].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
-axes[1,2].legend(loc='upper right')
-
-plt.tight_layout()
-plt.subplots_adjust(top=0.88)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_all.png',bbox_inches='tight')
-plt.show()
 
 #---Plot log(n) vs R for different timesteps
 
@@ -903,13 +529,13 @@ axes[2,1].set_xlabel(r'$log(R) \quad (pc)$', fontsize=12)
 axes[2,1].legend(loc='upper right')
 
 plt.tight_layout()
-plt.subplots_adjust(top=0.88)
+plt.subplots_adjust(top=0.95)
 plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSr_all2.png',bbox_inches='tight')
 plt.show()
 
 #---Plot n(v_gas) for time steps (both linear and log)
 
-fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7, 5.5))
+fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(8, 9))
 plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
              r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
              r', $\alpha=$'+str(alpha)+
@@ -920,63 +546,73 @@ plt.suptitle(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
 axes[0,0].plot((vg_t1[1]),np.log10(p_t1[1]),
                c=cmap.to_rgba(8),linestyle="",marker='.',
                markersize=3,label=r'$t=10^{3} yrs$')
+#axes[0,0].set_ylim(-2,4)
+#axes[0,0].set_xlim(0,15)
 axes[0,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 axes[0,0].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
-axes[0,0].legend(loc='upper right',bbox_to_anchor =(0.95,1))
-#---t=10^4yr
-axes[0,1].plot((vg_t1[2]),np.log10(p_t1[2]),
-               c=cmap.to_rgba(12),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{4} yrs$')
+axes[0,0].legend(loc='upper right')
+#---t=10^3.5yr
+axes[0,1].plot((vg_t1[5]),np.log10(p_t1[5]),
+               color='black',linestyle="",marker='.',
+               markersize=3,label=r'$t=10^{3.5} yrs$')
+#axes[0,1].set_ylim(-2,4)
+#axes[0,1].set_xlim(0,30)
 axes[0,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 axes[0,1].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
-axes[0,1].legend(loc='upper right',bbox_to_anchor =(0.95,1))
-#---t=10^5yr
-axes[1,0].plot((vg_t1[3]),np.log10(p_t1[3]),
-               c=cmap.to_rgba(16),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{5} yrs$')
+axes[0,1].legend(loc='upper right')
+#---t=10^4yr
+axes[1,0].plot((vg_t1[2]),np.log10(p_t1[2]),
+               c=cmap.to_rgba(12),linestyle="",marker='.',
+               markersize=3,label=r'$t=10^{4} yrs$')
+#axes[1,0].set_ylim(-2,4)
+#axes[1,0].set_xlim(0,60)
 axes[1,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 axes[1,0].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
-axes[1,0].legend(loc='upper right',bbox_to_anchor =(0.95,1))
-#---t=10^6yr
-axes[1,1].plot((vg_t1[4]),np.log10(p_t1[4]),
-               c=cmap.to_rgba(20),linestyle="",marker='.',
-               markersize=3,label=r'$t=10^{6} yrs$')
+axes[1,0].legend(loc='upper right')
+#---t=10^5yr
+axes[1,1].plot((vg_t1[3]),np.log10(p_t1[3]),
+               c=cmap.to_rgba(16),linestyle="",marker='.',
+               markersize=3,label=r'$t=10^{5} yrs$')
+#axes[1,1].set_ylim(-2,4)
+#axes[1,1].set_xlim(0,250)
 axes[1,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
 axes[1,1].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
-axes[1,1].legend(loc='upper right',bbox_to_anchor =(0.95,1))
+axes[1,1].legend(loc='upper right')
+#---t=10^6yr
+axes[2,0].plot((vg_t1[4]),np.log10(p_t1[4]),
+               c=cmap.to_rgba(20),linestyle="",marker='.',
+               markersize=3,label=r'$t=10^{6} yrs$')
+#axes[2,0].set_ylim(-2,4)
+#axes[2,0].set_xlim(0,1000)
+axes[2,0].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
+axes[2,0].set_xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
+axes[2,0].legend(loc='upper right')
+#---all t
+#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
+axes[2,1].plot(np.log10(vg_t1[4]),np.log10(p_t1[4]),
+               c=cmap.to_rgba(20),linestyle="",marker='.',
+               markersize=3)#,label=r'$t=10^{6} yrs$')
+axes[2,1].plot(np.log10(vg_t1[3]),np.log10(p_t1[3]),
+               c=cmap.to_rgba(16),linestyle="",marker='.',
+               markersize=3)#,label=r'$t=10^{5} yrs$')
+axes[2,1].plot(np.log10(vg_t1[2]),np.log10(p_t1[2]),
+               c=cmap.to_rgba(12),linestyle="",marker='.',
+               markersize=3)#,label=r'$t=10^{4} yrs$')
+axes[2,1].plot(np.log10(vg_t1[5]),np.log10(p_t1[5]),
+               color='black',linestyle="",marker='.',
+               markersize=3)#,label=r'$t=10^{3.5} yrs$')
+axes[2,1].plot(np.log10(vg_t1[1]),np.log10(p_t1[1]),
+               c=cmap.to_rgba(8),linestyle="",marker='.',
+               markersize=3)#,label=r'$t=10^{3} yrs$')
+#axes[2,1].set_ylim(-2,4)
+#axes[2,1].set_xlim(0,3)
+axes[2,1].set_ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
+axes[2,1].set_xlabel(r'$log(v_{gas}) \quad (km/s)$', fontsize=12)
+axes[2,1].legend(loc='upper right')
 
 plt.tight_layout()
-plt.subplots_adjust(top=0.88)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSvgas_sublpots.png',bbox_inches='tight')
-plt.show()
-
-
-#Plot log(n) vs (vgas) for different t steps
-#plt.plot([], [], ' ', label=r'$v_w=20000km/s$')
-plt.plot((vg_t1[4]),np.log10(p_t1[4]),
-         c=cmap.to_rgba(20),linestyle="",marker='.',
-         markersize=3,label=r'$t=10^{6} yrs$')
-plt.plot((vg_t1[3]),np.log10(p_t1[3]),
-         c=cmap.to_rgba(16),linestyle="",marker='.',
-         markersize=3,label=r'$t=10^{5} yrs$')
-plt.plot((vg_t1[2]),np.log10(p_t1[2]),
-         c=cmap.to_rgba(12),linestyle="",marker='.',
-         markersize=3,label=r'$t=10^{4} yrs$')
-plt.plot((vg_t1[1]),np.log10(p_t1[1]),
-         c=cmap.to_rgba(8),linestyle="",marker='.',
-         markersize=3,label=r'$t=10^{3} yrs$')
-plt.legend(loc='upper right', bbox_to_anchor =(0.95,1))
-#plt.xlim(-1000,12000)
-#plt.ylim(-2.5,6)
-plt.ylabel(r'$log(n) \quad (cm^{-3})$', fontsize=12)
-plt.xlabel(r'$v_{gas} \quad (km/s)$', fontsize=12)
-plt.title(r'$L_{AGN}(erg/s)=$'+str(L_AGN)+
-          r', $v_{in}(km/s)=$'+str(vin/(10.0**5.0))+
-          r', $\alpha=$'+str(alpha)+
-          r', $n_{H0}(cm^{-3})=$'+str(nH_0)+
-          r', $\tau_{in}=$'+str(Tin),
-          fontsize=10)
-plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSvgas.png',bbox_inches='tight')
+plt.subplots_adjust(top=0.95)
+plt.savefig('test_'+str(param_row)+'/ShockBubble_lognVSvgas_all2.png',bbox_inches='tight')
 plt.show()
 
 """CALCULATE VALUES BETWEEN TIMESTEPS (t and t+10yrs)"""
@@ -1112,7 +748,7 @@ for i in range(5):
     dvdt_cut=[];dvdt_sh_cut=[]
     for j in range(0,len(v1)):
         #Check bin doesn't span over R1 boundary making v_gas jump
-        if v1[j] !=20000 and v2[j] ==20000:
+        if v1[j] !=(vin/(10**5.0)) and v2[j] ==(vin/(10**5.0)):
             dvdt_sh.append(0.0)
         else:
             dv= np.abs(v2[j]-v1[j])
