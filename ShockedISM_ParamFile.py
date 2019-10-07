@@ -66,7 +66,7 @@ R0_all = R0_all*(3.086*(10.0**18)) # pc --> cm
 print(vin_all)
 
 # SET WHICH ROW OF INITAL PARAM TO USE
-param_row = 18
+param_row = 0
 L_AGN=L_AGN_all[param_row]; vin=vin_all[param_row]; alpha=alpha_all[param_row]
 nH_0= nH_0_all[param_row]; R0 = R0_all[param_row]; Tin=Tin_all[param_row]
 
